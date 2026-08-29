@@ -2,20 +2,27 @@ name = "weekly_ai_startup_data_refresh"
 description = "한국 비상장 AI 스타트업 자격과 매출 근거를 주간 검증하고 검토용 PR을 생성한다."
 timezone = "Asia/Seoul"
 schedule = "매주 월요일 06:00"
+rrule = "RRULE:FREQ=WEEKLY;BYDAY=MO;BYHOUR=6;BYMINUTE=0;BYSECOND=0"
 model = "gpt-5.6-luna"
 model_reasoning_effort = "high"
-mailbox_root = "work/mailbox"
+mailbox_root = "audit/mailbox"
+mailbox_path_pattern = "audit/mailbox/YYYY-MM-DD/<run_id>"
+run_id_pattern = "YYYY-MM-DDTHH-mm-ss+09-00"
+mailbox_retention = "git-versioned"
 schema_version = 1
 auto_merge = false
 base_branch = "main"
 update_branch_pattern = "codex/data-refresh-YYYY-MM-DD"
 
 [automation]
+title = "Weekly AI startup data refresh"
 workspace = "D:\\repo\\AIstartup_dashboard"
 run_in_worktree = true
 prompt = """
 Run the weekly AI startup data refresh defined in .codex/workflows/weekly-data-refresh.toml.
-Create a new run_id and mailbox directory under work/mailbox/<run_id>/, then execute the three
+Create a KST run_date and unique run_id, then initialize the mailbox under
+audit/mailbox/<run_date>/<run_id>/. Record every stage transition, timestamp, artifact SHA-256,
+change count, previous_run_id, base SHA, branch, and PR URL in manifest.json. Then execute the three
 configured agents strictly in order: private_company_auditor, revenue_research_auditor, and
 data_pr_reviewer. Treat mailbox artifacts as the handoff contract. Stop if a stage is blocked or
 failed. Use OpenDART, official company sources, and the newest relevant news available on the
@@ -48,7 +55,19 @@ manifest = "manifest.json"
 company_audit = "01-company-eligibility.json"
 revenue_audit = "02-revenue-evidence.json"
 pr_review = "03-final-review.json"
+loop_history = "04-loop-history.md"
+index = "audit/mailbox/index.json"
 allowed_statuses = ["queued", "running", "completed", "blocked", "failed", "no_change"]
+
+[pr_history]
+template = ".github/PULL_REQUEST_TEMPLATE/data-refresh.md"
+require_run_id = true
+require_previous_run_id = true
+require_stage_timeline = true
+require_artifact_checksums = true
+require_company_changes = true
+require_source_coverage = true
+require_blockers_and_warnings = true
 
 [sources]
 company_eligibility = ["KRX", "KIND", "OpenDART", "company_official", "latest_news"]

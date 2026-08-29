@@ -23,3 +23,5 @@ npm run dev
 자동 병합은 허용하지 않으며, 차단 또는 실패 상태가 발생하면 다음 단계로 진행하지 않습니다.
 주간 데이터 변경은 `main`에 직접 반영하지 않고 `codex/data-refresh-YYYY-MM-DD`
 브랜치에서 `main` 대상 PR로만 제안합니다.
+각 실행의 mailbox는 `audit/mailbox/YYYY-MM-DD/<run_id>`에 누적되며, PR 본문에는
+이전 실행 ID, 단계별 상태·소요시간·산출물 체크섬과 기업 추가·제외·매출 변경 내역을 기록합니다.

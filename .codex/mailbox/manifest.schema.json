@@ -4,13 +4,19 @@
   "title": "Weekly AI startup data refresh mailbox manifest",
   "type": "object",
   "additionalProperties": false,
-  "required": ["run_id", "schema_version", "started_at", "status", "stages"],
+  "required": ["run_id", "run_date", "mailbox_path", "schema_version", "trigger", "started_at", "completed_at", "status", "base_branch", "base_sha", "previous_run_id", "stages", "stage_events", "change_summary", "pr"],
   "properties": {
     "run_id": { "type": "string", "minLength": 1 },
+    "run_date": { "type": "string", "format": "date" },
+    "mailbox_path": { "type": "string", "pattern": "^audit/mailbox/[0-9]{4}-[0-9]{2}-[0-9]{2}/" },
     "schema_version": { "const": 1 },
+    "trigger": { "enum": ["manual", "scheduled"] },
     "started_at": { "type": "string", "format": "date-time" },
     "completed_at": { "type": ["string", "null"], "format": "date-time" },
     "status": { "enum": ["queued", "running", "completed", "blocked", "failed", "no_change"] },
+    "base_branch": { "const": "main" },
+    "base_sha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+    "previous_run_id": { "type": ["string", "null"] },
     "stages": {
       "type": "object",
       "additionalProperties": false,
@@ -20,7 +26,43 @@
         "revenue_audit": { "enum": ["queued", "running", "completed", "blocked", "failed"] },
         "pr_review": { "enum": ["queued", "running", "completed", "blocked", "failed", "no_change"] }
       }
+    },
+    "stage_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["stage", "status", "at", "message", "artifact", "sha256"],
+        "properties": {
+          "stage": { "enum": ["orchestrator", "company_audit", "revenue_audit", "pr_review"] },
+          "status": { "enum": ["queued", "running", "completed", "blocked", "failed", "no_change"] },
+          "at": { "type": "string", "format": "date-time" },
+          "message": { "type": "string" },
+          "artifact": { "type": ["string", "null"] },
+          "sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    },
+    "change_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["added", "removed", "revenue_changed", "unchanged"],
+      "properties": {
+        "added": { "type": "integer", "minimum": 0 },
+        "removed": { "type": "integer", "minimum": 0 },
+        "revenue_changed": { "type": "integer", "minimum": 0 },
+        "unchanged": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "pr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["branch", "base", "url"],
+      "properties": {
+        "branch": { "type": ["string", "null"] },
+        "base": { "const": "main" },
+        "url": { "type": ["string", "null"], "format": "uri" }
+      }
     }
   }
 }
-

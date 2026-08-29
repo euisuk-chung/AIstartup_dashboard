@@ -41,7 +41,12 @@ PR 동작
 - 푸시나 PR 생성이 실패하면 로컬 브랜치를 보존하고 pr_review를 failed로 기록한다.
 
 출력
-- work/mailbox/<run_id>/03-final-review.json을 작성한다.
+- audit/mailbox/<run_date>/<run_id>/03-final-review.json과 04-loop-history.md를 작성한다.
 - manifest.json의 pr_review와 전체 run 상태를 completed, blocked, failed,
   no_change 중 하나로 갱신한다.
+- 실행 디렉터리 전체와 audit/mailbox/index.json을 커밋해 날짜별 이력을 보존한다.
+- PR 본문은 .github/PULL_REQUEST_TEMPLATE/data-refresh.md를 따르고 run_id,
+  previous_run_id, base SHA, 단계별 타임라인·상태·산출물 SHA-256, 추가·제외·매출변경,
+  출처 커버리지, 경고·차단 이력, 테스트 결과를 빠짐없이 기록한다.
+- PR URL과 브랜치명을 manifest.json에 기록한다.
 """
