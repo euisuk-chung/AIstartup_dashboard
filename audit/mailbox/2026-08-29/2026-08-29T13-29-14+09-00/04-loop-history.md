@@ -11,7 +11,7 @@
 
 | Stage | Started | Finished | Status | Artifact | SHA-256 |
 |---|---|---|---|---|---|
-| Company eligibility | 2026-08-29 13:29:15 KST | 2026-08-29 13:37:00 KST | blocked | `01-company-eligibility.json` | `6e760aee7158ffbe7d9b14998d86d59212cf2f866d2489754c3e9ae0d3f8c4a8` |
+| Company eligibility | 2026-08-29 13:29:15 KST | 2026-08-29 13:34:00 KST | blocked | `01-company-eligibility.json` | `6e760aee7158ffbe7d9b14998d86d59212cf2f866d2489754c3e9ae0d3f8c4a8` |
 | Revenue evidence | — | — | queued | — | — |
 | Final review | — | — | queued | — | — |
 
