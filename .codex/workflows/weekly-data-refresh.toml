@@ -1,5 +1,5 @@
 name = "weekly_ai_startup_data_refresh"
-description = "한국 비상장 AI 스타트업 자격과 매출 근거를 주간 검증하고 검토용 PR을 생성한다."
+description = "한국 비상장 AI 스타트업 자격과 매출 근거를 주간 검증하고 태그된 PR을 자동 병합한다."
 timezone = "Asia/Seoul"
 schedule = "매주 월요일 06:00"
 rrule = "RRULE:FREQ=WEEKLY;BYDAY=MO;BYHOUR=6;BYMINUTE=0;BYSECOND=0"
@@ -10,7 +10,9 @@ mailbox_path_pattern = "audit/mailbox/YYYY-MM-DD/<run_id>"
 run_id_pattern = "YYYY-MM-DDTHH-mm-ss+09-00"
 mailbox_retention = "git-versioned"
 schema_version = 1
-auto_merge = false
+auto_merge = true
+merge_strategy = "squash"
+merge_helper = "node scripts/merge-data-refresh-pr.mjs"
 blocked_run_pr = "audit-only"
 base_branch = "main"
 update_branch_pattern = "codex/data-refresh-YYYY-MM-DD"
@@ -19,6 +21,8 @@ update_branch_pattern = "codex/data-refresh-YYYY-MM-DD"
 title = "Weekly AI startup data refresh"
 workspace = "D:\\repo\\AIstartup_dashboard"
 run_in_worktree = true
+single_task_end_to_end = true
+terminal_condition = "merged_or_no_change_or_hard_stop"
 prompt = """
 Run the weekly AI startup data refresh defined in .codex/workflows/weekly-data-refresh.toml.
 Create a KST run_date and unique run_id, then initialize the mailbox under
@@ -29,8 +33,14 @@ data_pr_reviewer. Treat mailbox artifacts as the handoff contract. Stop if a sta
 failed. Use OpenDART, official company sources, and the newest relevant news available on the
 research date. Only the final reviewer may update production data, push a codex/data-refresh-YYYY-MM-DD
 branch, and open a GitHub pull request targeting main. Never commit weekly data updates directly
-to main and never auto-merge the pull request. If an upstream stage is blocked or failed, do not
-run later stages or change production data; preserve the mailbox in an audit-only PR targeting main.
+to main. Classify every created PR as AUTO-PASSED or NEED-REVIEW using the merge_policy below, add the
+matching GitHub label and [TAG] title prefix, run deterministic validation, then invoke
+node scripts/merge-data-refresh-pr.mjs --pr <number> --tag <AUTO-PASSED|NEED-REVIEW> --reason <summary>
+to squash-merge it. NEED-REVIEW is a post-merge review marker in this MVP and does not block a
+technically valid merge. If an upstream stage is blocked or failed, do not run later stages or
+change production data; preserve the mailbox in an audit-only PR, classify it NEED-REVIEW, and
+auto-merge the audit trail after deterministic checks pass. Never merge when build, lint, mailbox
+schema/checksum validation, branch validation, or GitHub mergeability fails.
 """
 
 [orchestration]
@@ -51,6 +61,33 @@ require_common_fiscal_year = true
 require_official_revenue_source = true
 require_latest_news_check = true
 max_results = 100
+
+[merge_policy]
+mode = "mvp_auto_merge"
+default_tag = "AUTO-PASSED"
+review_tag = "NEED-REVIEW"
+review_is_post_merge = true
+title_prefix = true
+github_labels = true
+merge_all_technically_valid_prs = true
+hard_stop_conditions = [
+  "build_failed",
+  "lint_failed",
+  "mailbox_schema_failed",
+  "artifact_checksum_failed",
+  "unexpected_base_or_head_branch",
+  "merge_conflict",
+  "push_or_pr_failure",
+]
+need_review_conditions = [
+  "upstream_blocked_or_failed_audit_only",
+  "new_entry_or_re_entry",
+  "dropped_out_or_removed_ineligible",
+  "unranked_unverified",
+  "revenue_change_at_or_above_30_percent",
+  "source_conflict_or_warning",
+  "published_count_drop_warning",
+]
 
 [ranking]
 scope = "all_INCLUDE_companies_with_VERIFIED_revenue"
@@ -92,6 +129,8 @@ require_company_changes = true
 require_rank_changes = true
 require_source_coverage = true
 require_blockers_and_warnings = true
+require_merge_tag = true
+require_merge_result_comment = true
 
 [sources]
 company_eligibility = ["KRX", "KIND", "OpenDART", "company_official", "latest_news"]

@@ -69,7 +69,11 @@
       "properties": {
         "branch": { "type": ["string", "null"] },
         "base": { "const": "main" },
-        "url": { "type": ["string", "null"], "format": "uri" }
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "tag": { "enum": ["AUTO-PASSED", "NEED-REVIEW", null] },
+        "merge_status": { "enum": ["not_created", "open", "merged", "failed", null] },
+        "merged_at": { "type": ["string", "null"], "format": "date-time" },
+        "merge_commit_sha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" }
       }
     }
   }

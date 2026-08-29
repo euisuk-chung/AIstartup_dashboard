@@ -18,9 +18,13 @@ npm run dev
 
 1. `private_company_auditor`: 비상장 국내 AI 스타트업 자격 검수
 2. `revenue_research_auditor`: OpenDART, 회사 공식 자료, 최신 뉴스 기반 매출 검수
-3. `data_pr_reviewer`: 품질 게이트 확인 후 검토용 브랜치와 PR 생성
+3. `data_pr_reviewer`: 품질 게이트 확인 후 브랜치·PR 생성과 자동 병합
 
-자동 병합은 허용하지 않으며, 차단 또는 실패 상태가 발생하면 다음 단계로 진행하지 않습니다.
+하나의 Codex 예약 작업이 세 에이전트를 순서대로 실행합니다. 생성된 PR은
+`[AUTO-PASSED]` 또는 `[NEED-REVIEW]` 제목 접두사와 같은 이름의 label을 가진 뒤
+기술 검증을 통과하면 squash merge됩니다. MVP에서 `NEED-REVIEW`는 병합 후 확인이
+필요하다는 표시이며 병합을 차단하지 않습니다. 빌드·린트·mailbox 검증 실패,
+merge conflict, 잘못된 base/head 브랜치는 항상 병합을 중단합니다.
 주간 데이터 변경은 `main`에 직접 반영하지 않고 `codex/data-refresh-YYYY-MM-DD`
 브랜치에서 `main` 대상 PR로만 제안합니다.
 각 실행의 mailbox는 `audit/mailbox/YYYY-MM-DD/<run_id>`에 누적되며, PR 본문에는

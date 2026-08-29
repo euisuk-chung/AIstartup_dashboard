@@ -8,6 +8,8 @@
 - Trigger: scheduled / manual
 - Base SHA:
 - Branch:
+- Merge tag: `AUTO-PASSED` / `NEED-REVIEW`
+- Merge policy: technically valid PRs are squash-merged automatically; `NEED-REVIEW` is post-merge follow-up
 
 ### Stage timeline
 
@@ -60,4 +62,5 @@ For every non-unchanged company, record `previous_rank`, `current_rank`,
 - [ ] Build passed
 - [ ] Lint passed
 - [ ] No direct update to `main`
-- [ ] Automatic merge is disabled
+- [ ] Merge tag and matching GitHub label are present
+- [ ] Automatic squash merge result is recorded in a post-merge PR comment
