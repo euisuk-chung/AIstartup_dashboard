@@ -1,0 +1,54 @@
+name = "weekly_ai_startup_data_refresh"
+description = "한국 비상장 AI 스타트업 자격과 매출 근거를 주간 검증하고 검토용 PR을 생성한다."
+timezone = "Asia/Seoul"
+schedule = "매주 월요일 06:00"
+model = "gpt-5.6-luna"
+model_reasoning_effort = "high"
+mailbox_root = "work/mailbox"
+schema_version = 1
+auto_merge = false
+
+[automation]
+workspace = "D:\\repo\\AIstartup_dashboard"
+run_in_worktree = true
+prompt = """
+Run the weekly AI startup data refresh defined in .codex/workflows/weekly-data-refresh.toml.
+Create a new run_id and mailbox directory under work/mailbox/<run_id>/, then execute the three
+configured agents strictly in order: private_company_auditor, revenue_research_auditor, and
+data_pr_reviewer. Treat mailbox artifacts as the handoff contract. Stop if a stage is blocked or
+failed. Use OpenDART, official company sources, and the newest relevant news available on the
+research date. Only the final reviewer may update production data, push a codex/data-refresh-YYYY-MM-DD
+branch, and open a GitHub pull request. Never auto-merge the pull request.
+"""
+
+[orchestration]
+mode = "sequential"
+stop_on_blocked = true
+stop_on_failed = true
+stages = [
+  "private_company_auditor",
+  "revenue_research_auditor",
+  "data_pr_reviewer",
+]
+
+[gates]
+max_fetch_failure_rate = 0.20
+max_published_count_drop_rate = 0.10
+revenue_change_review_rate = 0.30
+require_common_fiscal_year = true
+require_official_revenue_source = true
+require_latest_news_check = true
+max_results = 100
+
+[mailbox]
+manifest = "manifest.json"
+company_audit = "01-company-eligibility.json"
+revenue_audit = "02-revenue-evidence.json"
+pr_review = "03-final-review.json"
+allowed_statuses = ["queued", "running", "completed", "blocked", "failed", "no_change"]
+
+[sources]
+company_eligibility = ["KRX", "KIND", "OpenDART", "company_official", "latest_news"]
+revenue_priority = ["OpenDART", "company_official", "latest_news"]
+news_is_confirmation_only = true
+search_snippet_is_evidence = false

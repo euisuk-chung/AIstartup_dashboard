@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/weekly-data-refresh-manifest.schema.json",
+  "title": "Weekly AI startup data refresh mailbox manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "schema_version", "started_at", "status", "stages"],
+  "properties": {
+    "run_id": { "type": "string", "minLength": 1 },
+    "schema_version": { "const": 1 },
+    "started_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": ["string", "null"], "format": "date-time" },
+    "status": { "enum": ["queued", "running", "completed", "blocked", "failed", "no_change"] },
+    "stages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["company_audit", "revenue_audit", "pr_review"],
+      "properties": {
+        "company_audit": { "enum": ["queued", "running", "completed", "blocked", "failed"] },
+        "revenue_audit": { "enum": ["queued", "running", "completed", "blocked", "failed"] },
+        "pr_review": { "enum": ["queued", "running", "completed", "blocked", "failed", "no_change"] }
+      }
+    }
+  }
+}
+
