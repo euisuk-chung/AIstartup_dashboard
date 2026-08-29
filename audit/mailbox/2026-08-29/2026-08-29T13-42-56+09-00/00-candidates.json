@@ -1,0 +1,12 @@
+{
+  "run_id": "2026-08-29T13-42-56+09-00",
+  "sample_mode": true,
+  "candidate_count": 5,
+  "candidates": [
+    { "company_id": "upstage", "brand_name": "업스테이지", "candidate_origin": "sample" },
+    { "company_id": "rebellions", "brand_name": "리벨리온", "candidate_origin": "sample" },
+    { "company_id": "wrtn-technologies", "brand_name": "뤼튼테크놀로지스", "candidate_origin": "sample" },
+    { "company_id": "makinarocks", "brand_name": "마키나락스", "candidate_origin": "sample" },
+    { "company_id": "twelvelabs", "brand_name": "트웰브랩스", "candidate_origin": "sample" }
+  ]
+}

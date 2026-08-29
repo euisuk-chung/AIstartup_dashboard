@@ -1,0 +1,205 @@
+{
+  "run_id": "2026-08-29T13-42-56+09-00",
+  "run_date": "2026-08-29",
+  "checked_at": "2026-08-29T14:04:30+09:00",
+  "sample_mode": true,
+  "publication_scope": "SAMPLE: Stage 1 INCLUDE companies with VERIFIED 2025 revenue only; this is not the full TOP100.",
+  "input_artifacts": [
+    {
+      "path": "audit/mailbox/2026-08-29/2026-08-29T13-42-56+09-00/01-company-eligibility.json",
+      "sha256": "e63fab02584065ea9af12d008d8540032713678cd072069136107a74aaf6e5da",
+      "status": "validated"
+    },
+    {
+      "path": "audit/mailbox/2026-08-29/2026-08-29T13-42-56+09-00/02-revenue-evidence.json",
+      "sha256": "eb51b3450e1bde7517629472d7a46c00d7bc38eac188016330b9167278a452a3",
+      "status": "validated"
+    }
+  ],
+  "gates": {
+    "company_audit_completed": true,
+    "revenue_audit_completed": true,
+    "run_id_consistent": true,
+    "schema_version_consistent": true,
+    "upstream_checksums_match_manifest": true,
+    "include_only": true,
+    "common_fiscal_year": 2025,
+    "official_revenue_source_for_ranked": true,
+    "unverified_values_excluded": true,
+    "fetch_failure_rate": 0.0,
+    "published_count_drop_rate": 0.0,
+    "revenue_change_review_rate": 0.0,
+    "production_data_changed": false,
+    "status": "passed"
+  },
+  "ranking": {
+    "cutoff": 100,
+    "candidate_pool_count": 3,
+    "published_count": 3,
+    "common_fiscal_year": 2025,
+    "sort": ["revenue_krw:desc", "company_id:asc"],
+    "ranked_companies": [
+      {
+        "rank": 1,
+        "company_id": "wrtn-technologies",
+        "legal_name": "주식회사 뤼튼테크놀로지스",
+        "brand_name": "뤼튼테크놀로지스",
+        "revenue_krw": 47117211348,
+        "fiscal_year": 2025,
+        "verification_status": "VERIFIED",
+        "source_type": "OpenDART",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260414000008",
+        "previous_rank": null,
+        "current_rank": 1,
+        "rank_delta": null,
+        "status": "NEW_ENTRY",
+        "reason": "First sample run; audited 2025 OpenDART 영업수익 is verified and ranks first among the three eligible verified records."
+      },
+      {
+        "rank": 2,
+        "company_id": "rebellions",
+        "legal_name": "리벨리온 주식회사",
+        "brand_name": "리벨리온",
+        "revenue_krw": 32021696412,
+        "fiscal_year": 2025,
+        "verification_status": "VERIFIED",
+        "source_type": "OpenDART",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260414001300",
+        "previous_rank": null,
+        "current_rank": 2,
+        "rank_delta": null,
+        "status": "NEW_ENTRY",
+        "reason": "First sample run; audited 2025 OpenDART consolidated 매출액 is verified and ranks second by the deterministic sort."
+      },
+      {
+        "rank": 3,
+        "company_id": "upstage",
+        "legal_name": "주식회사 업스테이지",
+        "brand_name": "업스테이지",
+        "revenue_krw": 24801523461,
+        "fiscal_year": 2025,
+        "verification_status": "VERIFIED",
+        "source_type": "OpenDART",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260413000172",
+        "previous_rank": null,
+        "current_rank": 3,
+        "rank_delta": null,
+        "status": "NEW_ENTRY",
+        "reason": "First sample run; audited 2025 OpenDART 영업수익 is verified and ranks third by the deterministic sort."
+      }
+    ]
+  },
+  "diff": [
+    {
+      "company_id": "wrtn-technologies",
+      "brand_name": "뤼튼테크놀로지스",
+      "status": "NEW_ENTRY",
+      "previous_rank": null,
+      "current_rank": 1,
+      "rank_delta": null,
+      "previous_revenue_krw": null,
+      "current_revenue_krw": 47117211348,
+      "reason": "No previous run exists; verified 2025 OpenDART revenue qualifies for the sample ranking.",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260414000008"
+    },
+    {
+      "company_id": "rebellions",
+      "brand_name": "리벨리온",
+      "status": "NEW_ENTRY",
+      "previous_rank": null,
+      "current_rank": 2,
+      "rank_delta": null,
+      "previous_revenue_krw": null,
+      "current_revenue_krw": 32021696412,
+      "reason": "No previous run exists; verified 2025 OpenDART consolidated revenue qualifies for the sample ranking.",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260414001300"
+    },
+    {
+      "company_id": "upstage",
+      "brand_name": "업스테이지",
+      "status": "NEW_ENTRY",
+      "previous_rank": null,
+      "current_rank": 3,
+      "rank_delta": null,
+      "previous_revenue_krw": null,
+      "current_revenue_krw": 24801523461,
+      "reason": "No previous run exists; verified 2025 OpenDART revenue qualifies for the sample ranking.",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260413000172"
+    },
+    {
+      "company_id": "twelvelabs",
+      "brand_name": "트웰브랩스",
+      "status": "UNRANKED_UNVERIFIED",
+      "previous_rank": null,
+      "current_rank": null,
+      "rank_delta": null,
+      "previous_revenue_krw": null,
+      "current_revenue_krw": null,
+      "reason": "Stage 2 found only secondary Catch/NICE revenue evidence; no authoritative Korean-entity 2025 revenue statement was found.",
+      "source_url": "https://www.catch.co.kr/Comp/CompInfo/LD4004"
+    },
+    {
+      "company_id": "makinarocks",
+      "brand_name": "마키나락스",
+      "status": "REMOVED_INELIGIBLE",
+      "previous_rank": null,
+      "current_rank": null,
+      "rank_delta": null,
+      "previous_revenue_krw": null,
+      "current_revenue_krw": null,
+      "reason": "Stage 1 EXCLUDE: KRX/KIND evidence confirms the company is listed on KOSDAQ as of 2026-05-20.",
+      "source_url": "https://kind.krx.co.kr/"
+    }
+  ],
+  "excluded_from_publication": [
+    {
+      "company_id": "twelvelabs",
+      "status": "UNRANKED_UNVERIFIED",
+      "reason": "Not included because revenue is not VERIFIED from an official source."
+    },
+    {
+      "company_id": "makinarocks",
+      "status": "REMOVED_INELIGIBLE",
+      "reason": "Not included because Stage 1 confirms current KOSDAQ listing."
+    }
+  ],
+  "change_summary": {
+    "added": 3,
+    "removed": 1,
+    "revenue_changed": 0,
+    "new_entry": 3,
+    "re_entry": 0,
+    "moved_up": 0,
+    "moved_down": 0,
+    "dropped_out": 0,
+    "removed_ineligible": 1,
+    "unranked_unverified": 1,
+    "watchlist": 0,
+    "unchanged": 0
+  },
+  "source_coverage": {
+    "common_fiscal_year": "2025 for all ranked companies and the reviewed unverified record",
+    "opendart_backed": "3/3 ranked companies",
+    "company_official_backed": "0/3 ranked revenue values; official company evidence supported eligibility and latest-news confirmation",
+    "latest_news_check": "Completed for all four Stage 2 INCLUDE companies; Stage 1 latest-news eligibility checks covered all five sample candidates",
+    "unverified_values_excluded": true,
+    "search_snippets_used_as_evidence": false
+  },
+  "validation": {
+    "manifest_schema": "pending_final_manifest_update",
+    "artifact_checksums": "upstream_match; final artifact checksummed after write",
+    "ranking_descending_and_tie_break": true,
+    "ranking_limited_to_100": true,
+    "build": "passed: npm run build",
+    "lint": "passed: npm run lint",
+    "no_direct_main_update": true,
+    "automatic_merge_disabled": true
+  },
+  "pr": {
+    "mode": "audit-only",
+    "production_data_changed": false,
+    "branch": "codex/data-refresh-2026-08-29",
+    "base": "main",
+    "url": null
+  }
+}

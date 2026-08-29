@@ -1,0 +1,95 @@
+{
+  "run_id": "2026-08-29T13-42-56+09-00",
+  "run_date": "2026-08-29",
+  "mailbox_path": "audit/mailbox/2026-08-29/2026-08-29T13-42-56+09-00",
+  "schema_version": 1,
+  "trigger": "manual",
+  "started_at": "2026-08-29T13:42:56.3349424+09:00",
+  "completed_at": "2026-08-29T14:05:09+09:00",
+  "status": "completed",
+  "base_branch": "main",
+  "base_sha": "697b4a4b1092e2988ca1fbe77dd277fe7d7cf064",
+  "previous_run_id": null,
+  "stages": {
+    "company_audit": "completed",
+    "revenue_audit": "completed",
+    "pr_review": "queued"
+  },
+  "stage_events": [
+    {
+      "stage": "orchestrator",
+      "status": "running",
+      "at": "2026-08-29T13:42:56.3349424+09:00",
+      "message": "Five-company end-to-end sample loop initialized from main.",
+      "artifact": "audit/mailbox/2026-08-29/2026-08-29T13-42-56+09-00/00-candidates.json",
+      "sha256": "3761ef9d70afefb07719213c079d7bccba51c7ac41824291ef4dfdde23f0fbac"
+    },
+    {
+      "stage": "company_audit",
+      "status": "running",
+      "at": "2026-08-29T13:47:10.3926190+09:00",
+      "message": "Stage 1 started: auditing exactly the five sample candidates against Korean private-company eligibility criteria.",
+      "artifact": null,
+      "sha256": null
+    },
+    {
+      "stage": "company_audit",
+      "status": "completed",
+      "at": "2026-08-29T13:49:24.2318438+09:00",
+      "message": "Stage 1 completed: 4 INCLUDE, 1 EXCLUDE, 0 REVIEW; no blocker or fetch-failure condition.",
+      "artifact": "audit/mailbox/2026-08-29/2026-08-29T13-42-56+09-00/01-company-eligibility.json",
+      "sha256": "e63fab02584065ea9af12d008d8540032713678cd072069136107a74aaf6e5da"
+    },
+    {
+      "stage": "revenue_audit",
+      "status": "running",
+      "at": "2026-08-29T13:57:28+09:00",
+      "message": "Stage 2 started: researching 2025 annual revenue for the four Stage 1 INCLUDE companies using OpenDART first, then official materials and opened latest-news confirmation.",
+      "artifact": null,
+      "sha256": null
+    },
+    {
+      "stage": "revenue_audit",
+      "status": "completed",
+      "at": "2026-08-29T14:01:11+09:00",
+      "message": "Stage 2 completed: three companies have VERIFIED 2025 revenue from audited OpenDART statements (CFS preferred where available); TwelveLabs remains REVIEW because no authoritative Korean-entity revenue statement was found.",
+      "artifact": "audit/mailbox/2026-08-29/2026-08-29T13-42-56+09-00/02-revenue-evidence.json",
+      "sha256": "eb51b3450e1bde7517629472d7a46c00d7bc38eac188016330b9167278a452a3"
+    },
+    {
+      "stage": "pr_review",
+      "status": "running",
+      "at": "2026-08-29T14:03:23+09:00",
+      "message": "Stage 3 started: validating the completed sample mailbox handoffs and preparing ranking/diff metadata without changing production application data.",
+      "artifact": null,
+      "sha256": null
+    },
+    {
+      "stage": "pr_review",
+      "status": "completed",
+      "at": "2026-08-29T14:05:09+09:00",
+      "message": "Stage 3 completed: 3 verified 2025 companies ranked for the bounded sample; 1 company retained as UNRANKED_UNVERIFIED and 1 as REMOVED_INELIGIBLE. Mailbox-only audit PR; no production data changed. Loop-history SHA-256: 50006ff1ed4e0fa2aefc59ddadf348d7e32ef631019e40107a25d4124c504343.",
+      "artifact": "audit/mailbox/2026-08-29/2026-08-29T13-42-56+09-00/03-final-review.json",
+      "sha256": "4ea4d369b0b04aecc89ae83f09e294b97d575e9a9884732a23e322317635b84a"
+    }
+  ],
+  "change_summary": {
+    "added": 3,
+    "removed": 1,
+    "revenue_changed": 0,
+    "new_entry": 3,
+    "re_entry": 0,
+    "moved_up": 0,
+    "moved_down": 0,
+    "dropped_out": 0,
+    "removed_ineligible": 1,
+    "unranked_unverified": 1,
+    "watchlist": 0,
+    "unchanged": 0
+  },
+  "pr": {
+    "branch": "codex/data-refresh-2026-08-29",
+    "base": "main",
+    "url": null
+  }
+}

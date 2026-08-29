@@ -1,0 +1,119 @@
+{
+  "run_id": "2026-08-29T13-42-56+09-00",
+  "run_date": "2026-08-29",
+  "checked_at": "2026-08-29T13:47:10+09:00",
+  "scope": {
+    "sample_mode": true,
+    "candidate_count": 5,
+    "source_policy": "Official company, KRX/KIND/OpenDART and independent latest-news sources; search snippets were not used as evidence.",
+    "listing_check": "KRX/KIND/OpenDART checked on 2026-08-29; MakinaRocks has a verified KOSDAQ listing, while no listing record was found for the other Korean legal entities at the time of checking."
+  },
+  "decision_counts": {
+    "INCLUDE": 4,
+    "EXCLUDE": 1,
+    "REVIEW": 0
+  },
+  "companies": [
+    {
+      "company_id": "upstage",
+      "legal_name": "주식회사 업스테이지",
+      "brand_name": "업스테이지",
+      "decision": "INCLUDE",
+      "reason": "한국 법인과 서울 본점이 회사 공식 사이트에서 확인된다. 공식 제품군은 Solar 계열 LLM, Document Parse, Information Extract, Studio 등 AI가 핵심 사업이며 2026-06-08 타임리 인수 및 2026-06-16 보도된 AI 사업 확장으로 영업 중임이 확인된다. 2026-04-16 KRX 공시도 업스테이지를 대한민국 법인·AI 시스템 개발 회사로 식별한다. KRX/KIND/OpenDART 검색일 현재 상장 기록은 확인되지 않았고, 최신 보도는 IPO를 준비 중이라고만 밝힌다. 타임리·AXZ를 인수한 주체이며 대기업 계열사·자회사, 폐업 또는 청산 근거는 확인되지 않았다.",
+      "evidence_urls": [
+        "https://www.upstage.ai/ko",
+        "https://www.upstage.ai/blog/ko/solar-pro-4",
+        "https://www.upstage.ai/ko/news/upstage-ai-agent-platform-acquisition",
+        "https://kind.krx.co.kr/external/2026/04/16/000073/20260416000122/10601.htm",
+        "https://view.asiae.co.kr/article/2026061612371077488",
+        "https://kind.krx.co.kr/",
+        "https://opendart.fss.or.kr/"
+      ],
+      "evidence_published_at": [null, "2026-08-11", "2026-06-08", "2026-04-16", "2026-06-16", null, null],
+      "event_date": [null, "2026-08-11", "2026-06-08", "2026-03-31", "2026-06-16", "2026-08-29", "2026-08-29"],
+      "checked_at": "2026-08-29T13:47:10+09:00",
+      "candidate_origin": "sample",
+      "first_seen_at": "2026-08-29T13:42:56.3349424+09:00"
+    },
+    {
+      "company_id": "rebellions",
+      "legal_name": "리벨리온 주식회사",
+      "brand_name": "리벨리온",
+      "decision": "INCLUDE",
+      "reason": "KRX 공시가 대한민국 법인 리벨리온 주식회사를 식별하고 사업을 인공지능 소프트웨어 및 AI 반도체 칩 설계·개발·공급으로 명시한다. 회사 공식 사이트와 2026-08-13 연합뉴스 보도에서 NPU·AI 서버 제품과 실제 정부 혁신제품 지정 및 시연이 확인되어 AI 핵심성과 영업 지속성이 충족된다. 2024-12 사피온코리아와 합병한 이력은 확인되지만 리벨리온이 인수·계열 편입으로 독립성을 잃었다는 근거는 없고, KRX 공시는 최대주주를 오진욱 외 5인으로 기재한다. 2026-07-28 최신 업계 보도는 리벨리온을 비상장 상태에서 2027년 상장을 추진하는 스타트업으로 다룬다. 폐업·휴업 및 현재 상장 근거는 확인되지 않았다.",
+      "evidence_urls": [
+        "https://kr.rebellions.ai/",
+        "https://kr.rebellions.ai/contact/",
+        "https://kind.krx.co.kr/external/2026/03/24/001357/20260317000974/71381.htm",
+        "https://www.yna.co.kr/amp/view/AKR20260813095600017",
+        "https://www.etnews.com/20260728000257",
+        "https://kind.krx.co.kr/",
+        "https://opendart.fss.or.kr/"
+      ],
+      "evidence_published_at": [null, null, "2026-03-24", "2026-08-13", "2026-07-28", null, null],
+      "event_date": [null, null, "2026-04-29", "2026-08-13", "2026-07-28", "2026-08-29", "2026-08-29"],
+      "checked_at": "2026-08-29T13:47:10+09:00",
+      "candidate_origin": "sample",
+      "first_seen_at": "2026-08-29T13:42:56.3349424+09:00"
+    },
+    {
+      "company_id": "wrtn-technologies",
+      "legal_name": "주식회사 뤼튼테크놀로지스",
+      "brand_name": "뤼튼테크놀로지스",
+      "decision": "INCLUDE",
+      "reason": "회사의 공식 서비스 정책이 법인명을 주식회사 뤼튼테크놀로지스로 명시하고, 공식 AX 사이트가 뤼튼을 AI-first·생성형 AI 에이전트 사업자로 설명한다. 2026-08-26 회사 발표는 본사를 서울로 기재하고 AI 서비스 플랫폼 개발·운영 및 Series C 자금조달을 확인하며, 같은 사건을 2026-08-26 Reuters가 South Korean AI services platform의 비상장 투자 라운드로 독립 보도한다. KRX/KIND/OpenDART 검색일 현재 상장 기록, 대기업 계열·자회사 편입, 폐업·청산 근거는 확인되지 않았다.",
+      "evidence_urls": [
+        "https://help.crack.wrtn.ai/policy/crackonly",
+        "https://wrtn.ax/",
+        "https://prtimes.jp/main/html/rd/p/000000079.000119361.html",
+        "https://www.marketscreener.com/news/south-korea-s-wrtn-raises-series-c-funding-at-over-722-million-valuation-ce7858d8d180f323",
+        "https://kind.krx.co.kr/",
+        "https://opendart.fss.or.kr/"
+      ],
+      "evidence_published_at": [null, null, "2026-08-26", "2026-08-26", null, null],
+      "event_date": [null, null, "2026-08-26", "2026-08-26", "2026-08-29", "2026-08-29"],
+      "checked_at": "2026-08-29T13:47:10+09:00",
+      "candidate_origin": "sample",
+      "first_seen_at": "2026-08-29T13:42:56.3349424+09:00"
+    },
+    {
+      "company_id": "makinarocks",
+      "legal_name": "(주)마키나락스",
+      "brand_name": "마키나락스",
+      "decision": "EXCLUDE",
+      "reason": "KIND/KRX 신규상장 공시가 마키나락스의 종목코드 A477850, 코스닥 기술성장기업부 소속 및 2026-05-20 상장일(매매개시일)을 명시한다. 회사 공식 2026-08-14 실적 발표도 '상장 후 첫 실적' 및 5월 코스닥 상장을 재확인한다. 산업 AI가 핵심이고 2026-08-26에도 영업 중이지만, 이 프로젝트의 비상장 기업 요건을 현재 충족하지 않으므로 제외한다.",
+      "evidence_urls": [
+        "https://invest.kiwoom.com/inv/disclosure_detail?code=02&date=2026.05.18&keyword=%EB%A7%88%ED%82%A4%EB%82%98%EB%9D%BD%EC%8A%A4&seq=00058269&stockCode=&tp=&type=02",
+        "https://www.makinarocks.ai/news/makinarocks-samsung-display-vietnam-ai-control-optimization/",
+        "https://www.makinarocks.ai/en/news/makinarocks-reports-first-earnings-since-ipo-h1-2026-revenue-up-168-year-on-year/",
+        "https://kind.krx.co.kr/"
+      ],
+      "evidence_published_at": ["2026-05-18", "2026-08-26", "2026-08-14", null],
+      "event_date": ["2026-05-20", "2026-08-26", "2026-05-20", "2026-08-29"],
+      "checked_at": "2026-08-29T13:47:10+09:00",
+      "candidate_origin": "sample",
+      "first_seen_at": "2026-08-29T13:42:56.3349424+09:00"
+    },
+    {
+      "company_id": "twelvelabs",
+      "legal_name": "주식회사 트웰브랩스",
+      "brand_name": "트웰브랩스",
+      "decision": "INCLUDE",
+      "reason": "공식 한국어 사이트의 법적 고지가 주식회사 트웰브랩스를 명시하고, 서울·판교 오피스와 영상 이해 AI 플랫폼을 운영 중이라고 확인한다. 한국 법인 등록 정보는 사업자번호 845-86-01667, 법인번호 110111-7439220, 2020-03-26 설립 및 국세청 기준 계속사업자로 표시된다. 2026-07-02 최신 보도는 영상 AI 핵심 사업과 Series B 투자 및 글로벌 확장을 확인한다. 공식 개인정보처리방침에는 미국 Twelve Labs, Inc.가 서비스 데이터 컨트롤러로도 기재되어 있으나, 이는 한국 법인과의 국경 간 운영 구조를 드러내는 보완 확인사항이며 대기업 계열·자회사 편입, 인수·합병으로 독립성을 잃었다는 근거는 확인되지 않았다. 한국 법인 단위의 비상장·독립 AI 스타트업 요건으로 판정한다.",
+      "evidence_urls": [
+        "https://www.twelvelabs.io/ko/about-us",
+        "https://www.twelvelabs.io/ko/press",
+        "https://www.twelvelabs.io/legal/privacy-policy",
+        "https://bizno.net/article/8458601667",
+        "https://en.edaily.co.kr/news/eda202607025071/",
+        "https://kind.krx.co.kr/",
+        "https://opendart.fss.or.kr/"
+      ],
+      "evidence_published_at": [null, null, "2026-01-12", null, "2026-07-02", null, null],
+      "event_date": [null, null, "2026-01-12", "2026-05-09", "2026-07-02", "2026-08-29", "2026-08-29"],
+      "checked_at": "2026-08-29T13:47:10+09:00",
+      "candidate_origin": "sample",
+      "first_seen_at": "2026-08-29T13:42:56.3349424+09:00"
+    }
+  ]
+}
