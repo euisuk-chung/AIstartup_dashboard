@@ -11,6 +11,7 @@ run_id_pattern = "YYYY-MM-DDTHH-mm-ss+09-00"
 mailbox_retention = "git-versioned"
 schema_version = 1
 auto_merge = false
+blocked_run_pr = "audit-only"
 base_branch = "main"
 update_branch_pattern = "codex/data-refresh-YYYY-MM-DD"
 
@@ -28,7 +29,8 @@ data_pr_reviewer. Treat mailbox artifacts as the handoff contract. Stop if a sta
 failed. Use OpenDART, official company sources, and the newest relevant news available on the
 research date. Only the final reviewer may update production data, push a codex/data-refresh-YYYY-MM-DD
 branch, and open a GitHub pull request targeting main. Never commit weekly data updates directly
-to main and never auto-merge the pull request.
+to main and never auto-merge the pull request. If an upstream stage is blocked or failed, do not
+run later stages or change production data; preserve the mailbox in an audit-only PR targeting main.
 """
 
 [orchestration]

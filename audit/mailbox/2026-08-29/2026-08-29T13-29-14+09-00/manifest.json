@@ -1,0 +1,55 @@
+{
+  "run_id": "2026-08-29T13-29-14+09-00",
+  "run_date": "2026-08-29",
+  "mailbox_path": "audit/mailbox/2026-08-29/2026-08-29T13-29-14+09-00",
+  "schema_version": 1,
+  "trigger": "manual",
+  "started_at": "2026-08-29T13:29:14.0300964+09:00",
+  "completed_at": "2026-08-29T13:37:00+09:00",
+  "status": "blocked",
+  "base_branch": "main",
+  "base_sha": "efacc57d45f68222039ce6b4bb195068852fdc7c",
+  "previous_run_id": null,
+  "stages": {
+    "company_audit": "blocked",
+    "revenue_audit": "queued",
+    "pr_review": "queued"
+  },
+  "stage_events": [
+    {
+      "stage": "orchestrator",
+      "status": "running",
+      "at": "2026-08-29T13:29:14.0300964+09:00",
+      "message": "Manual first-run loop initialized from main.",
+      "artifact": null,
+      "sha256": null
+    },
+    {
+      "stage": "company_audit",
+      "status": "running",
+      "at": "2026-08-29T13:29:15+09:00",
+      "message": "Started conservative two-source eligibility verification for all 100 candidates.",
+      "artifact": null,
+      "sha256": null
+    },
+    {
+      "stage": "company_audit",
+      "status": "blocked",
+      "at": "2026-08-29T13:37:00+09:00",
+      "message": "Blocked: full KRX/KIND/OpenDART, official-company, ownership/M&A, and latest-news reconciliation for all 100 candidates was not completed reliably; all candidates remain REVIEW.",
+      "artifact": "audit/mailbox/2026-08-29/2026-08-29T13-29-14+09-00/01-company-eligibility.json",
+      "sha256": "6e760aee7158ffbe7d9b14998d86d59212cf2f866d2489754c3e9ae0d3f8c4a8"
+    }
+  ],
+  "change_summary": {
+    "added": 0,
+    "removed": 0,
+    "revenue_changed": 0,
+    "unchanged": 0
+  },
+  "pr": {
+    "branch": "codex/data-refresh-2026-08-29",
+    "base": "main",
+    "url": null
+  }
+}
