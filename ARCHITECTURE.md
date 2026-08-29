@@ -22,15 +22,16 @@ AI Startup Index는 한국의 독립 비상장 AI 스타트업을 선별하고, 
 | 운영 사이트 | OpenAI Sites 배포 완료 | 현재 소유자 전용 비공개 접근 |
 | 운영 URL | <https://ai-startup-index-korea.chung-es.chatgpt.site> | OpenAI 로그인 필요 |
 | Codex Desktop Scheduled task | **미등록** | Codex 앱의 Scheduled 화면에는 작업이 없음 |
-| Windows 예약 작업 | 활성화 | 매주 월요일 06:00 KST에 Codex CLI 호출 |
+| Windows 예약 작업 | **비활성화** | 작업 정의만 남아 있으며 실행되지 않음 |
 | 에이전트 루프 정의 | 저장소에 존재 | `.codex/workflows/weekly-data-refresh.toml` |
 | PR 자동 병합 정책 | 구현됨 | `[AUTO-PASSED]` / `[NEED-REVIEW]` |
 | GitHub merge 후 Sites 재배포 | **미연결** | GitHub `main` push만으로 Sites가 자동 배포되지는 않음 |
 | 화면 데이터 | **프로토타입 하드코딩** | 실제 조사 데이터 파일과 UI 연결이 아직 필요 |
 
-중요: 현재 Windows 예약 작업은 Codex Desktop의 네이티브 Scheduled task가
-아니다. Windows 작업 스케줄러가 로컬 Codex CLI를 실행하는 폴백 방식이다.
-따라서 Codex 앱 Scheduled 화면에 표시되지 않는 것이 정상이다.
+중요: Windows 예약 작업은 2026-08-29에 비활성화했다. Codex Desktop의
+네이티브 Scheduled task도 아직 등록되지 않았으므로 현재 자동 실행되는
+스케줄은 없다. 향후 스케줄의 활성화와 비활성화는 Codex 앱 Scheduled
+화면에서만 관리한다.
 
 ## 3. 전체 구조
 
@@ -196,11 +197,12 @@ no_change, or a documented hard stop. Never push weekly data directly to main.
 Codex Desktop task가 생성된 것을 Scheduled 화면에서 확인하기 전에는 네이티브
 스케줄이 활성화됐다고 간주하지 않는다.
 
-### 7.2 현재 폴백: Windows 작업 스케줄러
+### 7.2 비활성 폴백: Windows 작업 스케줄러
 
-현재 로컬 PC에는 `AIstartup_dashboard Weekly Refresh` 작업이 활성화되어 있다.
-이 작업은 매주 월요일 06:00 KST에 Codex CLI를 실행한다. Codex Desktop
-Scheduled task를 생성한 뒤에는 이 폴백을 비활성화해야 중복 PR을 방지할 수 있다.
+로컬 PC의 `AIstartup_dashboard Weekly Refresh` 작업은 비활성화되어 있다.
+작업 정의는 복구 참고용으로 남아 있지만 실행되지 않는다. 운영 스케줄은
+Windows 작업 스케줄러에서 다시 활성화하지 않고 Codex Desktop Scheduled
+화면에서만 관리한다.
 
 ## 8. OpenAI Sites 배포
 
@@ -253,9 +255,7 @@ Sites 배포 실패는 데이터 PR merge를 되돌리지 않는다. 대신 실�
 우선순위 순서:
 
 1. Codex Desktop Scheduled task 실제 등록 및 Scheduled 화면 확인
-2. Windows 폴백 작업 비활성화로 중복 실행 방지
-3. 하드코딩된 `app/page.tsx` 데이터를 검증된 데이터 파일/API로 교체
-4. merge 완료 후 OpenAI Sites 자동 재배포 단계 연결
-5. GitHub 필수 체크와 실패 알림 보강
-6. 4주간 실행 이력 확인 후 경고 임계값 조정
-
+2. 하드코딩된 `app/page.tsx` 데이터를 검증된 데이터 파일/API로 교체
+3. merge 완료 후 OpenAI Sites 자동 재배포 단계 연결
+4. GitHub 필수 체크와 실패 알림 보강
+5. 4주간 실행 이력 확인 후 경고 임계값 조정
