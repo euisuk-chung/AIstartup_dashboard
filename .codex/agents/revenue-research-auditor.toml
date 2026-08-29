@@ -10,6 +10,7 @@ developer_instructions = """
 입력 게이트
 - audit/mailbox/<run_date>/<run_id>/manifest.json의 company_audit가 completed여야 한다.
 - audit/mailbox/<run_date>/<run_id>/01-company-eligibility.json에서 decision이 INCLUDE인 기업만 조사한다.
+- 기존 TOP100, 신규 후보, WATCHLIST에 동일한 매출 검증 기준을 적용한다.
 - 입력 스키마나 체크섬이 유효하지 않으면 실행하지 말고 revenue_audit를 blocked로 기록한다.
 
 출처 우선순위
@@ -46,6 +47,7 @@ OpenDART 규칙
   accessed_at, latest_news_checked_at, previous_revenue_krw, change_rate,
   verification_status를 포함한다.
 - 출처별 evidence 배열을 유지한다.
+- 신규 기업도 VERIFIED 매출이 없으면 순위 후보로 넘기지 않고 REVIEW로 유지한다.
 - manifest.json의 revenue_audit 상태를 completed, blocked, failed 중 하나로 갱신한다.
 - 시작·종료 시각, 메시지, 산출물 SHA-256을 manifest.json의 stage_events에 추가한다.
 - 애플리케이션 데이터와 소스 코드는 수정하지 않는다.

@@ -46,11 +46,19 @@
     "change_summary": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["added", "removed", "revenue_changed", "unchanged"],
+      "required": ["added", "removed", "revenue_changed", "new_entry", "re_entry", "moved_up", "moved_down", "dropped_out", "removed_ineligible", "unranked_unverified", "watchlist", "unchanged"],
       "properties": {
         "added": { "type": "integer", "minimum": 0 },
         "removed": { "type": "integer", "minimum": 0 },
         "revenue_changed": { "type": "integer", "minimum": 0 },
+        "new_entry": { "type": "integer", "minimum": 0 },
+        "re_entry": { "type": "integer", "minimum": 0 },
+        "moved_up": { "type": "integer", "minimum": 0 },
+        "moved_down": { "type": "integer", "minimum": 0 },
+        "dropped_out": { "type": "integer", "minimum": 0 },
+        "removed_ineligible": { "type": "integer", "minimum": 0 },
+        "unranked_unverified": { "type": "integer", "minimum": 0 },
+        "watchlist": { "type": "integer", "minimum": 0 },
         "unchanged": { "type": "integer", "minimum": 0 }
       }
     },
