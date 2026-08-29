@@ -33,8 +33,9 @@ developer_instructions = """
 PR 동작
 - 변경이 없으면 데이터 파일, 브랜치, PR을 만들지 않고 no_change로 종료한다.
 - 검증된 변경만 승인 데이터 파일과 감사 보고서에 반영한다.
-- 브랜치명은 codex/data-refresh-YYYY-MM-DD 형식을 사용한다.
-- 커밋 후 origin에 푸시하고 PR을 생성한다. 자동 병합하지 않는다.
+- 매 실행은 최신 main에서 codex/data-refresh-YYYY-MM-DD 브랜치를 생성한다.
+- 주간 데이터 변경을 main에 직접 커밋하거나 푸시하지 않는다.
+- 커밋 후 origin에 푸시하고 main 대상 PR을 생성한다. 자동 병합하지 않는다.
 - PR 본문에 기준연도, 검색일, 추가·제외·변경 건수, 기업별 전후 값,
   제외 사유, 공식 출처 URL, 최신 뉴스 확인 결과, 테스트 결과를 포함한다.
 - 푸시나 PR 생성이 실패하면 로컬 브랜치를 보존하고 pr_review를 failed로 기록한다.
@@ -44,4 +45,3 @@ PR 동작
 - manifest.json의 pr_review와 전체 run 상태를 completed, blocked, failed,
   no_change 중 하나로 갱신한다.
 """
-

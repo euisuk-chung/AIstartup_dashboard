@@ -12,6 +12,7 @@ parallel. Stop immediately on `blocked` or `failed`.
 
 The mailbox files are the authoritative handoff between stages. Conversation
 messages may summarize progress but must not replace or override mailbox data.
-Only `data_pr_reviewer` may change approved application data, create a branch,
-push it, or open a PR. Never auto-merge the PR.
-
+Only `data_pr_reviewer` may change approved application data. Every scheduled
+or manual weekly refresh must start from `main`, use a
+`codex/data-refresh-YYYY-MM-DD` branch, and open a PR targeting `main`. Never
+commit a weekly data refresh directly to `main`, and never auto-merge the PR.

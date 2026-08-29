@@ -21,3 +21,5 @@ npm run dev
 3. `data_pr_reviewer`: 품질 게이트 확인 후 검토용 브랜치와 PR 생성
 
 자동 병합은 허용하지 않으며, 차단 또는 실패 상태가 발생하면 다음 단계로 진행하지 않습니다.
+주간 데이터 변경은 `main`에 직접 반영하지 않고 `codex/data-refresh-YYYY-MM-DD`
+브랜치에서 `main` 대상 PR로만 제안합니다.
