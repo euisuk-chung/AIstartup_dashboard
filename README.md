@@ -2,7 +2,9 @@
 
 한국 비상장 AI 스타트업을 매출액 기준으로 비교하는 데이터룸입니다.
 
-전체 구성, 실제 스케줄 상태, 에이전트 실행 계약과 OpenAI Sites 배포 방식은
+- GitHub Pages: <https://euisuk-chung.github.io/top100_kr_startup/>
+
+전체 구성, 실제 스케줄 상태, 에이전트 실행 계약과 GitHub Pages 배포 방식은
 [ARCHITECTURE.md](./ARCHITECTURE.md)를 참고하세요.
 
 ## 로컬 실행
@@ -12,7 +14,8 @@ npm install
 npm run dev
 ```
 
-배포용 빌드는 `npm run build`로 확인합니다.
+로컬 Vinext 빌드는 `npm run build`, GitHub Pages 정적 배포 빌드는
+`npm run build:pages`로 확인합니다.
 
 ## 주간 데이터 검수
 

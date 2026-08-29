@@ -9,7 +9,7 @@ AI Startup Index는 한국의 독립 비상장 AI 스타트업을 선별하고, 
 
 이 문서는 다음 네 영역의 실제 구성과 실행 계약을 정의한다.
 
-1. 웹사이트와 OpenAI Sites 배포
+1. 웹사이트와 GitHub Pages 배포
 2. 주간 데이터 조사 서브에이전트 루프
 3. GitHub 브랜치·PR·자동 병합
 4. 스케줄과 운영 복구 절차
@@ -20,13 +20,12 @@ AI Startup Index는 한국의 독립 비상장 AI 스타트업을 선별하고, 
 |---|---|---|
 | 소스 저장소 | [`euisuk-chung/top100_kr_startup`](https://github.com/euisuk-chung/top100_kr_startup) `main` | 애플리케이션과 감사 이력의 기준 |
 | `main` 보호 | Active Ruleset | 브랜치 삭제와 force push 차단 |
-| 운영 사이트 | OpenAI Sites 배포 완료 | 현재 소유자 전용 비공개 접근 |
-| 운영 URL | <https://ai-startup-index-korea.chung-es.chatgpt.site> | OpenAI 로그인 필요 |
+| 운영 사이트 | GitHub Pages | <https://euisuk-chung.github.io/top100_kr_startup/> |
 | Codex Desktop Scheduled task | **미등록** | Codex 앱의 Scheduled 화면에는 작업이 없음 |
 | Windows 예약 작업 | **비활성화** | 작업 정의만 남아 있으며 실행되지 않음 |
 | 에이전트 루프 정의 | 저장소에 존재 | `.codex/workflows/weekly-data-refresh.toml` |
 | PR 자동 병합 정책 | 구현됨 | `[AUTO-PASSED]` / `[NEED-REVIEW]` |
-| GitHub merge 후 Sites 재배포 | **미연결** | GitHub `main` push만으로 Sites가 자동 배포되지는 않음 |
+| GitHub merge 후 배포 | GitHub Actions | `main` push마다 Pages 정적 배포 |
 | 화면 데이터 | **프로토타입 하드코딩** | 실제 조사 데이터 파일과 UI 연결이 아직 필요 |
 
 중요: Windows 예약 작업은 2026-08-29에 비활성화했다. Codex Desktop의
@@ -53,7 +52,8 @@ flowchart TD
     AP --> MG[Squash merge]
     NR --> MG
     MG --> MAIN[GitHub main]
-    MAIN -. 현재 수동 .-> SITE[OpenAI Sites 새 버전 저장·배포]
+    MAIN --> ACTIONS[GitHub Pages Actions]
+    ACTIONS --> SITE[공개 사이트 배포]
 ```
 
 세 에이전트는 선행 결과를 mailbox로 인계하기 때문에 반드시 순차 실행한다.
@@ -71,7 +71,7 @@ flowchart TD
 | `.codex/agents/data-pr-reviewer.toml` | TOP 100 재산정, 최종 검수, PR 및 merge 지침 |
 | `.codex/mailbox/manifest.schema.json` | 실행 manifest 데이터 계약 |
 | `audit/mailbox/<date>/<run_id>/` | 단계 간 인계와 감사 이력 |
-| `.openai/hosting.json` | OpenAI Sites 프로젝트 연결 정보 |
+| `.github/workflows/deploy-pages.yml` | GitHub Pages 정적 빌드와 배포 |
 
 대화 메시지는 진행 상황을 설명할 수 있지만 mailbox 산출물을 대신하거나
 덮어쓸 수 없다.
@@ -205,31 +205,22 @@ Codex Desktop task가 생성된 것을 Scheduled 화면에서 확인하기 전�
 Windows 작업 스케줄러에서 다시 활성화하지 않고 Codex Desktop Scheduled
 화면에서만 관리한다.
 
-## 8. OpenAI Sites 배포
+## 8. GitHub Pages 배포
 
-운영 사이트는 OpenAI Sites를 사용한다.
+`.github/workflows/deploy-pages.yml`은 `main` push마다 동일 UI를 정적 export해
+GitHub Pages에 공개한다. 저장소가 프로젝트 페이지이므로 정적 자산에는
+`/top100_kr_startup` base path를 적용한다.
 
-현재 배포 흐름:
+배포 흐름:
 
-1. 애플리케이션 build와 lint 검증
-2. GitHub `main` 커밋·push
-3. Sites 소스 저장소에 동일 SHA push
-4. 검증된 `dist`를 Sites version으로 저장
-5. 소유자 전용 production deployment 실행
-6. 배포 성공 상태와 live URL 확인
+1. `main` push 또는 수동 `workflow_dispatch`
+2. `npm ci`
+3. `npm run build:pages`로 `out/` 정적 export
+4. Pages artifact 업로드
+5. GitHub Pages production 배포
 
-현재 이 과정은 주간 데이터 PR merge 뒤에 자동으로 이어지지 않는다. 따라서
-데이터가 GitHub `main`에 병합돼도 운영 Site는 자동으로 갱신되지 않는다.
-
-목표 상태는 동일한 단일 Codex task의 마지막 단계에서 다음을 수행하는 것이다.
-
-```text
-PR merged -> latest main checkout -> lint/build -> Sites version save
--> private deploy -> deployment succeeded 확인
-```
-
-Sites 배포 실패는 데이터 PR merge를 되돌리지 않는다. 대신 실행 상태를
-`NEED-REVIEW`로 남기고 동일 Git SHA의 배포만 재시도한다.
+배포 실패는 데이터 PR merge를 되돌리지 않는다. Actions 로그를 확인한 뒤
+동일 Git SHA에서 workflow를 재실행한다.
 
 ## 9. 관측성과 복구
 
@@ -248,7 +239,7 @@ Sites 배포 실패는 데이터 PR merge를 되돌리지 않는다. 대신 실�
 - upstream 산출물 체크섬이 같으면 실패한 단계부터 재시도
 - 같은 run 디렉터리를 덮어쓰지 않고 새 run ID 생성
 - 열린 같은 주차 PR이 있으면 중복 PR 생성 금지
-- GitHub merge 성공 후 Sites만 실패하면 동일 merge SHA로 배포만 재시도
+- GitHub merge 성공 후 Pages만 실패하면 동일 merge SHA에서 workflow 재실행
 - 조사 실패 또는 차단 시 승인 데이터는 변경하지 않고 audit-only 이력만 보존
 
 ## 10. 남은 MVP 작업
@@ -257,6 +248,6 @@ Sites 배포 실패는 데이터 PR merge를 되돌리지 않는다. 대신 실�
 
 1. Codex Desktop Scheduled task 실제 등록 및 Scheduled 화면 확인
 2. 하드코딩된 `app/page.tsx` 데이터를 검증된 데이터 파일/API로 교체
-3. merge 완료 후 OpenAI Sites 자동 재배포 단계 연결
-4. GitHub 필수 체크와 실패 알림 보강
+3. GitHub Pages 배포 실패 알림 보강
+4. GitHub 필수 체크 보강
 5. 4주간 실행 이력 확인 후 경고 임계값 조정
