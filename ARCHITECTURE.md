@@ -18,7 +18,8 @@ AI Startup Index는 한국의 독립 비상장 AI 스타트업을 선별하고, 
 
 | 영역 | 현재 상태 | 비고 |
 |---|---|---|
-| 소스 저장소 | GitHub `main` | 애플리케이션과 감사 이력의 기준 |
+| 소스 저장소 | [`euisuk-chung/top100_kr_startup`](https://github.com/euisuk-chung/top100_kr_startup) `main` | 애플리케이션과 감사 이력의 기준 |
+| `main` 보호 | Active Ruleset | 브랜치 삭제와 force push 차단 |
 | 운영 사이트 | OpenAI Sites 배포 완료 | 현재 소유자 전용 비공개 접근 |
 | 운영 URL | <https://ai-startup-index-korea.chung-es.chatgpt.site> | OpenAI 로그인 필요 |
 | Codex Desktop Scheduled task | **미등록** | Codex 앱의 Scheduled 화면에는 작업이 없음 |
