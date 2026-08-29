@@ -1,5 +1,17 @@
 {
   "schema_version": 1,
-  "latest_run_id": null,
-  "runs": []
+  "latest_run_id": "2026-08-29T13-42-56+09-00",
+  "runs": [
+    {
+      "run_id": "2026-08-29T13-42-56+09-00",
+      "run_date": "2026-08-29",
+      "status": "completed",
+      "path": "audit/mailbox/2026-08-29/2026-08-29T13-42-56+09-00",
+      "stages": {
+        "company_audit": "completed",
+        "revenue_audit": "completed",
+        "pr_review": "completed"
+      }
+    }
+  ]
 }
