@@ -68,9 +68,9 @@
       "stage": "pr_review",
       "status": "completed",
       "at": "2026-08-29T14:05:09+09:00",
-      "message": "Stage 3 completed: 3 verified 2025 companies ranked for the bounded sample; 1 company retained as UNRANKED_UNVERIFIED and 1 as REMOVED_INELIGIBLE. Mailbox-only audit PR; no production data changed. Loop-history SHA-256: 50006ff1ed4e0fa2aefc59ddadf348d7e32ef631019e40107a25d4124c504343.",
+      "message": "Stage 3 completed: 3 verified 2025 companies ranked for the bounded sample; 1 company retained as UNRANKED_UNVERIFIED and 1 as REMOVED_INELIGIBLE. Mailbox-only audit PR; no production data changed. Loop-history SHA-256: 8912f65eb4d0dcc17ea9ddc7f84219250e88bdcb64d7b1e0ce57671386cbda4a.",
       "artifact": "audit/mailbox/2026-08-29/2026-08-29T13-42-56+09-00/03-final-review.json",
-      "sha256": "4ea4d369b0b04aecc89ae83f09e294b97d575e9a9884732a23e322317635b84a"
+      "sha256": "002307c8484316e142db9a5a0c2733d27e09cbf08d378d26c7e4335072486849"
     }
   ],
   "change_summary": {

@@ -186,8 +186,8 @@
     "search_snippets_used_as_evidence": false
   },
   "validation": {
-    "manifest_schema": "pending_final_manifest_update",
-    "artifact_checksums": "upstream_match; final artifact checksummed after write",
+    "manifest_schema": "passed",
+    "artifact_checksums": "all recorded artifact checksums match",
     "ranking_descending_and_tie_break": true,
     "ranking_limited_to_100": true,
     "build": "passed: npm run build",
@@ -200,6 +200,6 @@
     "production_data_changed": false,
     "branch": "codex/data-refresh-2026-08-29",
     "base": "main",
-    "url": null
+    "url": "https://github.com/euisuk-chung/AIstartup_dashboard/pull/2"
   }
 }
