@@ -45,6 +45,14 @@
     "added": 0,
     "removed": 0,
     "revenue_changed": 0,
+    "new_entry": 0,
+    "re_entry": 0,
+    "moved_up": 0,
+    "moved_down": 0,
+    "dropped_out": 0,
+    "removed_ineligible": 0,
+    "unranked_unverified": 0,
+    "watchlist": 0,
     "unchanged": 0
   },
   "pr": {

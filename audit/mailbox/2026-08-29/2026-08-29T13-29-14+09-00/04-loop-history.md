@@ -22,6 +22,7 @@
 - EXCLUDE: 0
 - REVIEW: 100
 - Production data changes: none
+- TOP100 ranking changes: none (ranking stage was not reached)
 
 The company audit could not complete the required two-source reconciliation for
 all candidates. It therefore promoted no company to INCLUDE or EXCLUDE and left

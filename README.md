@@ -25,3 +25,8 @@ npm run dev
 브랜치에서 `main` 대상 PR로만 제안합니다.
 각 실행의 mailbox는 `audit/mailbox/YYYY-MM-DD/<run_id>`에 누적되며, PR 본문에는
 이전 실행 ID, 단계별 상태·소요시간·산출물 체크섬과 기업 추가·제외·매출 변경 내역을 기록합니다.
+
+TOP100은 매주 전체 `INCLUDE + VERIFIED 매출` 후보군을 다시 정렬해 산정합니다.
+신규 기업이 100위 안에 진입하면 `NEW_ENTRY`, 그 영향으로 밀려난 기업은
+`DROPPED_OUT`으로 기록합니다. 상장·인수 등 자격 상실은 `REMOVED_INELIGIBLE`,
+매출 근거 부족은 `UNRANKED_UNVERIFIED`로 구분하며 과거 이력은 삭제하지 않습니다.

@@ -19,7 +19,17 @@ developer_instructions = """
 - 모든 매출값에 공식 원문 링크와 공통 기준연도가 있는지 확인한다.
 - VERIFIED가 아닌 값과 뉴스 단독 수치를 제외한다.
 - 매출액을 내림차순 정렬하고 최대 100개까지만 승인한다.
-- 전주 승인 데이터와 추가, 제외, 매출 변경을 비교한다.
+- INCLUDE이면서 VERIFIED 매출이 있는 전체 후보군을 먼저 정렬한 뒤 정확히 상위 100개만 공개한다.
+- 매출이 같으면 company_id 오름차순으로 순위를 결정해 결과를 재현 가능하게 한다.
+- 신규 기업이 100위 안이면 NEW_ENTRY, 밖이면 WATCHLIST로 처리한다.
+- 신규 진입으로 100위 밖으로 밀린 기존 기업은 삭제하지 않고 DROPPED_OUT으로 이력에 보존한다.
+- 이전 탈락 기업이 다시 100위 안에 들면 RE_ENTRY로 처리한다.
+- 기존 순위 변화는 MOVED_UP, MOVED_DOWN, UNCHANGED로 구분하고 previous_rank,
+  current_rank, rank_delta를 기록한다.
+- 상장·계열 편입·인수·폐업 등 자격 상실은 REMOVED_INELIGIBLE로 기록한다.
+- 매출 근거가 VERIFIED가 아니게 된 기업은 UNRANKED_UNVERIFIED로 비공개 처리하되 삭제하지 않는다.
+- 전주 승인 데이터와 신규 진입, 재진입, 순위변동, 컷오프 탈락, 자격제외,
+  매출 변경을 모두 비교한다.
 
 회로 차단 조건
 - 데이터 수집 실패율이 20% 이상이다.
@@ -36,7 +46,8 @@ PR 동작
 - 매 실행은 최신 main에서 codex/data-refresh-YYYY-MM-DD 브랜치를 생성한다.
 - 주간 데이터 변경을 main에 직접 커밋하거나 푸시하지 않는다.
 - 커밋 후 origin에 푸시하고 main 대상 PR을 생성한다. 자동 병합하지 않는다.
-- PR 본문에 기준연도, 검색일, 추가·제외·변경 건수, 기업별 전후 값,
+- PR 본문에 기준연도, 검색일, 신규·재진입·상승·하락·유지·컷오프 탈락·
+  자격제외·미검증 건수, 기업별 이전/현재 순위와 전후 매출,
   제외 사유, 공식 출처 URL, 최신 뉴스 확인 결과, 테스트 결과를 포함한다.
 - 푸시나 PR 생성이 실패하면 로컬 브랜치를 보존하고 pr_review를 failed로 기록한다.
 
@@ -46,7 +57,7 @@ PR 동작
   no_change 중 하나로 갱신한다.
 - 실행 디렉터리 전체와 audit/mailbox/index.json을 커밋해 날짜별 이력을 보존한다.
 - PR 본문은 .github/PULL_REQUEST_TEMPLATE/data-refresh.md를 따르고 run_id,
-  previous_run_id, base SHA, 단계별 타임라인·상태·산출물 SHA-256, 추가·제외·매출변경,
+  previous_run_id, base SHA, 단계별 타임라인·상태·산출물 SHA-256, 신규·제외·매출변경·순위변동,
   출처 커버리지, 경고·차단 이력, 테스트 결과를 빠짐없이 기록한다.
 - PR URL과 브랜치명을 manifest.json에 기록한다.
 """

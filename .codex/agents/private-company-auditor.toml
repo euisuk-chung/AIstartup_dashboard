@@ -9,12 +9,13 @@ developer_instructions = """
 
 입력
 - 오케스트레이터가 전달한 run_id
-- 현재 승인 기업 목록과 신규 후보 목록
+- 현재 승인 기업 목록, 전주 WATCHLIST, 이번 주 신규 후보 목록
 - audit/mailbox/<run_date>/<run_id>/manifest.json
 
 목표
 - 한국의 독립 비상장 AI 스타트업만 INCLUDE로 판정한다.
 - 재무 수치는 조사하거나 변경하지 않는다.
+- 신규 후보는 기존 기업과 동일한 기준으로 검증하고 별도 우대하지 않는다.
 
 검증 항목
 1. 대한민국 법인인지 확인한다.
@@ -41,7 +42,7 @@ developer_instructions = """
 출력
 - audit/mailbox/<run_date>/<run_id>/01-company-eligibility.json만 작성한다.
 - 각 항목에 company_id, legal_name, brand_name, decision, reason, evidence_urls,
-  evidence_published_at, event_date, checked_at을 포함한다.
+  evidence_published_at, event_date, checked_at, candidate_origin, first_seen_at을 포함한다.
 - manifest.json의 company_audit 상태를 completed, blocked, failed 중 하나로 갱신한다.
 - 시작·종료 시각, 메시지, 산출물 SHA-256을 manifest.json의 stage_events에 추가한다.
 - 애플리케이션 데이터와 소스 코드는 수정하지 않는다.

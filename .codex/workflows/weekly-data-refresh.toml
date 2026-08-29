@@ -52,6 +52,27 @@ require_official_revenue_source = true
 require_latest_news_check = true
 max_results = 100
 
+[ranking]
+scope = "all_INCLUDE_companies_with_VERIFIED_revenue"
+sort = ["revenue_krw:desc", "company_id:asc"]
+cutoff = 100
+require_common_fiscal_year = true
+new_company_inside_cutoff = "NEW_ENTRY"
+new_company_outside_cutoff = "WATCHLIST"
+existing_company_inside_cutoff = "RANKED"
+existing_company_outside_cutoff = "DROPPED_OUT"
+previously_ranked_company_reentering = "RE_ENTRY"
+ineligible_company = "REMOVED_INELIGIBLE"
+unverified_revenue_company = "UNRANKED_UNVERIFIED"
+retain_all_history = true
+
+[ranking.diff]
+statuses = ["NEW_ENTRY", "RE_ENTRY", "MOVED_UP", "MOVED_DOWN", "UNCHANGED", "DROPPED_OUT", "REMOVED_INELIGIBLE", "UNRANKED_UNVERIFIED", "WATCHLIST"]
+require_previous_rank = true
+require_current_rank = true
+require_rank_delta = true
+require_reason = true
+
 [mailbox]
 manifest = "manifest.json"
 company_audit = "01-company-eligibility.json"
@@ -68,6 +89,7 @@ require_previous_run_id = true
 require_stage_timeline = true
 require_artifact_checksums = true
 require_company_changes = true
+require_rank_changes = true
 require_source_coverage = true
 require_blockers_and_warnings = true
 
