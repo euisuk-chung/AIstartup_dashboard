@@ -13,7 +13,7 @@
   "stages": {
     "company_audit": "completed",
     "revenue_audit": "completed",
-    "pr_review": "queued"
+    "pr_review": "completed"
   },
   "stage_events": [
     {
