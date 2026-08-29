@@ -39,6 +39,14 @@ jobs:
           GITHUB_PAGES: 'true'
           NEXT_PUBLIC_SITE_ORIGIN: https://euisuk-chung.github.io/top100_kr_startup
 
+      - name: Preserve Next.js assets on GitHub Pages
+        shell: bash
+        run: |
+          touch out/.nojekyll
+          test -f out/index.html
+          test -d out/_next
+          test -f out/.nojekyll
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
