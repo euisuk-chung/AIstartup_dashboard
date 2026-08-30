@@ -66,9 +66,9 @@ flowchart TD
 |---|---|
 | `AGENTS.md` | 루프 실행 시 저장소 전역 운영 규칙 |
 | `.codex/workflows/weekly-data-refresh.toml` | 스케줄 프롬프트, 단계, 게이트, 순위, merge 정책 |
-| `.codex/agents/private-company-auditor.toml` | 비상장·독립 스타트업 자격 판정 지침 |
-| `.codex/agents/revenue-research-auditor.toml` | OpenDART·회사 공식 사이트·최신 뉴스 매출 조사 지침 |
-| `.codex/agents/data-pr-reviewer.toml` | TOP 100 재산정, 최종 검수, PR 및 merge 지침 |
+| `.codex/agents/private_company_auditor.toml` | 비상장·독립 스타트업 자격 판정 지침 |
+| `.codex/agents/revenue_research_auditor.toml` | OpenDART·회사 공식 사이트·최신 뉴스 매출 조사 지침 |
+| `.codex/agents/data_pr_reviewer.toml` | TOP 100 재산정, 최종 검수, PR 및 merge 지침 |
 | `.codex/mailbox/manifest.schema.json` | 실행 manifest 데이터 계약 |
 | `audit/mailbox/<date>/<run_id>/` | 단계 간 인계와 감사 이력 |
 | `.github/workflows/deploy-pages.yml` | GitHub Pages 정적 빌드와 배포 |

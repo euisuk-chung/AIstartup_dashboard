@@ -53,6 +53,11 @@ stages = [
   "data_pr_reviewer",
 ]
 
+[orchestration.agent_files]
+private_company_auditor = ".codex/agents/private_company_auditor.toml"
+revenue_research_auditor = ".codex/agents/revenue_research_auditor.toml"
+data_pr_reviewer = ".codex/agents/data_pr_reviewer.toml"
+
 [gates]
 max_fetch_failure_rate = 0.20
 max_published_count_drop_rate = 0.10
